@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useForm, SubmitHandler } from "react-hook-form"
 import { Link } from 'react-router-dom';
 
-const Contact = () => {
+function Contact() {
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+   
+    formState: { errors,  isSubmitting },
+  } = useForm()
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,11 +37,33 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const delay = (d)=>{
+    return new Promise((resolve, reject)=>{
+      setTimeout(()=>{
+        resolve()
+      },d * 1000);
+    })
+  }
+  ////SUBMITTING PROCESS
+  const submitTemp = async (data) => {
+    // await delay(2)
+    let r = await fetch("http://localhost:5000/")
+    let res = await r.text()
+    console.log(data, res)
+
+    if (data.username==="Jatin") {
+      setError("blocked", {message:"sorry, user Jatin is blocked!!"})
+    }
+  }
+
+
+
+  const submitHandle = async (e) => {
     e.preventDefault();
+    
 
     try {
-      const response = await fetch('https://backend-my-protfolio-5h2b.vercel.app/submit-form', {
+      const response = await fetch('http://localhost:4000/submit-form', 'https://backend-my-protfolio-5h2b.vercel.app/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,14 +102,48 @@ const Contact = () => {
 
         <div className="line2"></div>
         <div className="right">
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Name:</label><br />
-            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} /><br />
-            <label htmlFor="email">Email:</label><br />
-            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} /><br />
-            <label htmlFor="message">Message:</label><br />
-            <textarea id="message" name="message" value={formData.message} onChange={handleChange}></textarea><br />
-            <input type="submit" value="Send" />
+          <form onSubmit={submitHandle}>
+            <label htmlFor="name">Name:</label>
+            <br />
+            <input
+              placeholder="username"
+              {...register("username", {
+                required: {value: true, message: "username is required"},
+                minLength: { value: 3, message: "Minimum length should be 3" },
+                maxLength: { value: 16, message: "Maximum length should be 16" }
+              })}
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+            <br />
+            {errors.username && <span className="text-red-700">{errors.username.message}</span>}
+            <br />
+
+            <label htmlFor="email">Email:</label>
+            <br />
+            <input placeholder='email'
+              {...register("email", {
+                required: {value: true, message: "Email is required"}
+              })}
+              type="email" 
+              id="email" 
+              name="email" 
+              value={formData.email} 
+              onChange={handleChange} />
+
+            {errors.email && <span className="text-red-700">{errors.email.message}</span>}
+            <br />
+            <label htmlFor="message">Message:</label>
+            <br />
+            <textarea placeholder='Enter Your Message' id="message" name="message" value={formData.message} onChange={handleChange}></textarea>
+            <br />
+            {isSubmitting && <div>Loding...</div> }
+            <input disabled={isSubmitting} type="submit" value="Send" />
+            <br />
+            {errors.blocked && <span className="text-red-700">{errors.blocked.message}</span>}
           </form>
           {responseMessage && <p>{responseMessage}</p>}
         </div>
