@@ -63,7 +63,7 @@ function Contact() {
     
 
     try {
-      const response = await fetch('https://backend-my-protfolio-5h2b.vercel.app/submit-form','http"//localhost:4000', {
+      const response = await fetch('http"//localhost:4000/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
