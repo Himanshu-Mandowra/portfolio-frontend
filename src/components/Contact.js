@@ -31,7 +31,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4000/submit-form', {
+      const response = await fetch('https://backend-my-protfolio-5h2b.vercel.app/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
