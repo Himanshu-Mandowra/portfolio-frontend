@@ -63,7 +63,7 @@ function Contact() {
     
 
     try {
-      const response = await fetch('http://localhost:4000/submit-form', { // or replace with the production URL
+      const response = await fetch('https://backend-my-protfolio.vercel.app/submit-form', { // or replace with the production URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
