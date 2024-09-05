@@ -1,0 +1,132 @@
+.contact .middle-bar .left .social .i-one {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+
+@media (max-width: 600px) {
+
+    .contact {
+        background-color: #333;
+    }
+
+    .contact .top-bar {
+        height: 7vh;
+        margin: 0px 0;
+        background: #333;
+        /* text-decoration-line: underline; */
+        font-family: cursive;
+    }
+
+    .contact .middle-bar {
+        background-color: #333;
+    }
+
+    .contact .left .social {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .contact .middle-bar .left .social .i-one{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .contact .left .social .i-one {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        justify-content: space-around;
+    }
+
+    .contact .left .social a {
+        order: 2px solid yellow;
+        border-radius: 8px;
+        text-decoration: none;
+        color: white;
+        font-style: italic;
+        word-spacing: 3px;
+        display: flex;
+        height: 70px;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 6px;
+        border: 1px solid #333;
+        border-top: 1px solid rgb(174, 165, 165);
+        border-bottom: 1px solid rgb(174, 165, 165);
+        border-radius: 20%;
+        /* border-top-left-radius: 0px;
+        border-bottom-right-radius: 0px; */
+        /* border-style: inset; */
+        font-size: 16px;
+        /* border-radius: 8px; */
+        transition: all 0.2s ease-in-out;
+        font-size: 0px;
+    }
+
+    .contact .left .social .second {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .right form {
+        background: none;
+        color: black;
+    }
+
+    .right label {
+        color: whitesmoke;
+    }
+
+    .fotter .Email {
+        background-color: #333;
+    }
+
+    .divider {
+        /* margin-top: -28px; */
+        display: none;
+    }
+
+    .Service .connect {
+        margin-bottom: 7px;
+    }
+
+    .Service .social {
+        margin-bottom: 16px;
+    }
+
+    .contact .top-bar {
+
+        /* border: 2px solid red; */
+        display: flex;
+        flex-direction: column;
+        height: 20vh;
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        /* font-family: Arial, sans-serif; */
+        font-size: 42px;
+        /* text-decoration: underline; */
+        font-family: "Arsenal SC", sans-serif;
+        /* font-style: italic;*/
+    }
+
+    .contact .top-bar .top-bar-one {
+        color: gray;
+        font-family: cursive;
+        text-transform: uppercase;
+    }
+
+    .contact .top-bar .underline {
+        color: gray;
+        background: gray;
+        width: 37vh;
+    }
+
+
+
+
+}

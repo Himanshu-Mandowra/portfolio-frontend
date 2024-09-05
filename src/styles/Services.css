@@ -1,0 +1,181 @@
+/* servic.css */
+
+/* Default styles for larger screens */
+.Service .middle-bar {
+    display: flex;
+    flex-direction: row;
+    background-color: #222
+}
+
+.Webb {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.web-one {
+    /* font-size: 10px; */
+    font: message-box;
+    display: flex;
+    color: #938c8c;
+    font-size: larger;
+}
+
+.web-two {
+    border: 1px solid #222;
+    font-family: cursive;
+    padding-right: 4px;
+    padding-left: 4px;
+    border-bottom: 2px solid gray;
+    border-top: 2px solid gray;
+    border-radius: 10%;
+    padding: 3px 0;
+}
+
+.Webb .para,
+.content .para {
+    width: 80vh;
+    font-size: 24px;
+}
+
+.content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.Service .middle-bar .line2 {
+    /* animation: spin .5s linear infinite; */
+    /* height: 1px;
+    width: 328px; */
+    /* border-radius: 20%; */
+    animation: zup .5s linear infinite; 
+}
+
+@keyframes zup {
+    0%{
+        background: var(--main-color);
+    }
+
+    100%{
+        background: greenyellow;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+    .Service {
+        height: 100%;
+    }
+
+    .Service .middle-bar {
+        height: 100%;
+        font-size: 30px;
+
+    }
+
+    .Service .middle-bar .line2 {
+        /* animation: spin .5s linear infinite; */
+        height: 1px;
+        width: 328px;
+        /* border-radius: 20%; */
+        animation: zup .5s linear infinite; 
+    }
+
+    @keyframes zup {
+        0%{
+            background: var(--main-color);
+        }
+
+        100%{
+            background: greenyellow;
+        }
+    }
+
+    /* .Service .middle-bar .line2::before {
+        content: '';
+        position: absolute;
+        inset: 4px;
+        border-radius: 50%;
+        background: linear-gradient(#00ccff, #d500f9);
+        /* animation: mymove 14s linear infinite; 
+
+    } */
+
+
+    .Service .middle-bar .Webb {
+        height: 100%;
+        margin: 2px;
+
+
+    }
+
+    .Service .middle-bar .web-one {
+        height: 100%;
+        font-size: 20px;
+        margin: 10px;
+        margin-bottom: 30px;
+    }
+
+    .Service .middle-bar .web-two{
+        height: 100%;
+        font-size: 20px;
+        margin: 10px;
+        margin-bottom: 30px;
+        font-family: cursive;
+        color: aqua;
+        border: none;
+        border: 2px solid #222;
+        border-top: 3px solid #797876;
+        border-bottom: 3px solid #797876;
+        border-radius: 10%;
+    }
+
+    .Service .middle-bar .Webb .para {
+        height: 100%;
+        margin: 2px;
+
+
+
+    }
+    .Webb .para,
+    .content .para {
+        width: 100%;
+        font-size: 17px;
+        border: 2px solid #222;
+        padding: 12px 20px;
+        color: darkgrey;
+        /* text-align: center; */
+        border-top: 3px solid gray;
+        border-bottom: 3px solid gray;
+        border-radius: 10%;
+    }
+
+    .Service .middle-bar .content {
+        height: 100%;
+        margin: 2px;
+    }
+    .Service .middle-bar {
+        flex-direction: column;
+    }
+
+    .Webb, .content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    
+}
+
+/* Tablet styles */
+
+
+/* Desktop styles */
