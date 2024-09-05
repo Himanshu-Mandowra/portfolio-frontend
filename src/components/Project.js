@@ -17,24 +17,26 @@ function FuturisticPage() {
 
     }
 
+    
+
 
 
 
 
     return (
         <div id='Project' className="w-full overflow-hidden Project h-[100vh] bg-gradient-to-b from-black via-gray-900 to-black flex items-center justify-center text-white">
-            <div className='flex justify-center lg:w-[30%]  w-full ' >
+            <div className='flex justify-center w-[30%]' >
                 <div className="w-[120%] flex text-center justify-center  items-center ">
 
-                    <div className="text-[47px] lg:w-[90%] w-[60%] flex flex-col items-center justify-center">
-                        <motion.div className="z-2 up p-10 bg-orange-800 h-[16vh] w-full overflow-hidden border-8 border-white border-solid rounded-t-[22px] border-b-0"
+                    <div className="text-[47px] w-[90%] flex flex-col items-center justify-center">
+                        <motion.div className="z-2 up p-10 bg-orange-800 h-[16vh] w-full overflow-hidden border-4 border-amber-900 rounded-t-[22px] border-b border-t-0 border-r-0 border-l-0"
                             animate={{ y: isMovedUp ? -100 : 0 }} // Moves the element upward by 100px
                             transition={{ stiffness: 300, delay: 0.5 }}
                         //  style={{ transformOrigin: 'top center' }} // Rotate from the top edge
                         >
 
                         </motion.div>
-                        <motion.div className="z-2 down bg-orange-800 h-[18vh] w-full overflow-hidden border-8 border-white border-solid p-0"
+                        <motion.div className="z-2 down bg-orange-800 h-[18vh] w-full overflow-hidden border-8 border-amber-900 p-0"
                             animate={{ y: isMovedUp ? 100 : 0 }} // Moves the element downward by 100px
                             transition={{ stiffness: 300, delay: 0.5 }}
                         >
@@ -43,13 +45,13 @@ function FuturisticPage() {
                     </div>
                 </div>
             </div>
-            <div className="text-[17px] absolute lg:w-[50%] w-full flex justify-center">
-                <motion.div className="flex sm:border-0 border-dashed rounded-full border-l-2 border-l-transparent border-r-2 border-r-transparent  items-center justify-center down  p-6 text-white border--orange-500 h-[20vh] w-[50%] overflow-hidden border-3"
+            <div className="text-[17px] absolute w-[50%] flex justify-center">
+                <motion.div className="flex border-dashed rounded-full border-l-2 border-l-transparent border-r-2 border-r-transparent  items-center justify-center down  p-6 text-white border--orange-500 h-[20vh] w-[50%] overflow-hidden border-3"
                     animate={{ scale: isZoomUp ? 1 : 0 }} // Moves the element downward by 100px
                     transition={{ stiffness: 300, delay: 0.5 }}
 
                 >
-                    <motion.button className=' z-1 cursor-pointer text-white sm:font-light lg:font-bold py-2 px-4 rounded hover:bg-custom-blue-dark focus:outline-none focus:ring-2 focus:ring-custom-blue focus:ring-opacity-50'
+                    <motion.button className='z-1 cursor-pointer  text-white font-bold py-2 px-4 rounded hover:bg-custom-blue-dark focus:outline-none focus:ring-2 focus:ring-custom-blue focus:ring-opacity-50  '
                         initial={{ background: 'linear-gradient(to right, #1e40af, #3b82f6)' }}
                         whileHover={{
                             scale: 1.2,
