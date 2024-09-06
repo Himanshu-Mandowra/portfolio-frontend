@@ -113,7 +113,7 @@ function Contact() {
             <br />
 
             {/* Submit Button */}
-            {isSubmitting && <div>Loading...</div>}
+            {isSubmitting && <div className="text-white">Loading...</div>}
             <input disabled={isSubmitting} type="submit" value="Send" />
             <br />
 
