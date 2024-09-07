@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from 'emailjs-com';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Link } from 'react-router-dom';
 
@@ -8,8 +9,8 @@ function Contact() {
     register,
     handleSubmit,
     setError,
-   
-    formState: { errors,  isSubmitting },
+
+    formState: { errors, isSubmitting },
   } = useForm()
 
   const [data, setData] = useState({
@@ -37,22 +38,35 @@ function Contact() {
     });
   };
 
-  const delay = (d)=>{
-    return new Promise((resolve, reject)=>{
-      setTimeout(()=>{
+  const delay = (d) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
         resolve()
-      },d * 1000);
+      }, d * 1000);
     })
   }
   ////SUBMITTING PROCESS
   const submitTemp = async (data) => {
-    // await delay(2)
-    let r = await fetch("http://localhost:5000/")
-    let res = await r.text()
-    console.log(data, res)
+    data.preventDefault();
 
-    if (data.username==="Jatin") {
-      setError("blocked", {message:"sorry, user Jatin is blocked!!"})
+    emailjs.sendForm('service_2nib78g', 'template_bo3vf4i', data.target, 'LQvI0NJt-BCDntiHf')
+      .then((result) => {
+        console.log(result.text);
+        alert('Message sent successfully');
+        setResponseMessage('Message sent successfully.');
+      }, (error) => {
+        console.log(error.text);
+        alert('Failed to send message');
+        setResponseMessage('Failed to send message.');
+      });
+
+    setData({
+      username: '',
+      email: '',
+      message: '',
+    });
+    if (data.username === "Jatin") {
+      setError("blocked", { message: "sorry, user Jatin is blocked!!" })
     }
   }
 
@@ -60,7 +74,7 @@ function Contact() {
 
   // const submitHandle = async (e) => {
   //   e.preventDefault();
-    
+
 
   //   try {
   //     const response = await fetch('https://backend-my-protfolio.vercel.app/submit-form', { // or replace with the production URL
@@ -102,13 +116,13 @@ function Contact() {
 
         <div className="line2"></div>
         <div className="right">
-          <form onSubmit={handleSubmit(submitTemp)}>
+          <form onSubmit={submitTemp}>
             <label htmlFor="name">Name:</label>
             <br />
             <input
               placeholder="username"
               {...register("username", {
-                required: {value: true, message: "username is required"},
+                required: { value: true, message: "username is required" },
                 minLength: { value: 3, message: "Minimum length should be 3" },
                 maxLength: { value: 16, message: "Maximum length should be 16" }
               })}
@@ -122,14 +136,18 @@ function Contact() {
 
             <label htmlFor="email">Email:</label>
             <br />
-            <input placeholder='email'
+            <input
+              placeholder="email"
               {...register("email", {
-                required: {value: true, message: "Email is required"}
+                required: { value: true, message: "Email is required" },
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email address"
+                }
               })}
-              type="email" 
-              id="email" 
-              value={data.email} 
-              />
+              type="email"
+              id="email"
+            />
 
             {errors.email && <span className="text-red-700">{errors.email.message}</span>}
             <br />
@@ -137,7 +155,7 @@ function Contact() {
             <br />
             <textarea placeholder='Enter Your Message' id="message" name="message" value={data.message} onChange={handleChange}></textarea>
             <br />
-            {isSubmitting && <div>Loding...</div> }
+            {isSubmitting && <div>Loding...</div>}
             <input disabled={isSubmitting} type="submit" value="Send" />
             <br />
             {errors.blocked && <span className="text-red-700">{errors.blocked.message}</span>}
