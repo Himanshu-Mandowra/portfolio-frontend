@@ -63,7 +63,7 @@ function Contact() {
     
 
     try {
-      const response = await fetch('https://backend-my-protfolio.vercel.app/submit-form', { // or replace with the production URL
+      const response = await fetch('https://form-backend-bk3q.onrender.com/submit-form', { // or replace with the production URL
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
