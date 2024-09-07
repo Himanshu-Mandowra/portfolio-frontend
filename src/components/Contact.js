@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 function Contact() {
   const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
-  const [data, setData] = useState({ name: '', email: '', message: '' });
-  const [responseMessage, setResponseMessage] = useState('');
+  const [responseMessage, setResponseMessage] = React.useState('');
 
-  useEffect(() => {
+  React.useEffect(() => {
     const currentYear = new Date().getFullYear();
     const copyrightText = `© ${currentYear} by Himanshu Mandowra. All rights reserved.`;
     const copyrightElement = document.getElementById('copyright');
@@ -15,11 +14,6 @@ function Contact() {
       copyrightElement.textContent = copyrightText;
     }
   }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-  };
 
   const submitHandle = async (formData) => {
     try {
@@ -63,10 +57,10 @@ function Contact() {
         <div className="line2"></div>
         <div className="right">
           <form onSubmit={handleSubmit(submitHandle)}>
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="username">Name:</label>
             <br />
             <input
-              placeholder="username"
+              placeholder="Username"
               {...register("username", {
                 required: { value: true, message: "Username is required" },
                 minLength: { value: 3, message: "Minimum length should be 3" },
@@ -74,9 +68,6 @@ function Contact() {
               })}
               type="text"
               id="username"
-              name="username"
-              value={data.username}
-              onChange={handleChange}
             />
             <br />
             {errors.username && <span className="text-red-700">{errors.username.message}</span>}
@@ -85,27 +76,23 @@ function Contact() {
             <label htmlFor="email">Email:</label>
             <br />
             <input
-              placeholder='email'
+              placeholder='Email'
               {...register("email", {
                 required: { value: true, message: "Email is required" }
               })}
               type="email"
               id="email"
-              name="email"
-              value={data.email}
-              onChange={handleChange}
             />
             <br />
             {errors.email && <span className="text-red-700">{errors.email.message}</span>}
             <br />
+
             <label htmlFor="message">Message:</label>
             <br />
             <textarea
               placeholder='Enter Your Message'
               id="message"
-              name="message"
-              value={data.message}
-              onChange={handleChange}
+              {...register("message")}
             ></textarea>
             <br />
             {isSubmitting && <div>Loading...</div>}
