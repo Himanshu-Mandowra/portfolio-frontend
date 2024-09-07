@@ -1,23 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 function Contact() {
-
-  const {
-    register,
-    handleSubmit,
-    setError,
-   
-    formState: { errors,  isSubmitting },
-  } = useForm()
-
-  const [data, setData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
+  const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
+  const [data, setData] = useState({ name: '', email: '', message: '' });
   const [responseMessage, setResponseMessage] = useState('');
 
   useEffect(() => {
@@ -27,55 +14,28 @@ function Contact() {
     if (copyrightElement) {
       copyrightElement.textContent = copyrightText;
     }
-  }, []); // Empty dependency array means this effect runs once after the initial render
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value
-    });
+    setData({ ...data, [name]: value });
   };
 
-  const delay = (d)=>{
-    return new Promise((resolve, reject)=>{
-      setTimeout(()=>{
-        resolve()
-      },d * 1000);
-    })
-  }
-  ////SUBMITTING PROCESS
-  const submitTemp = async (data) => {
-    // await delay(2)
-    let r = await fetch("http://localhost:5000/")
-    let res = await r.text()
-    console.log(data, res)
-
-    if (data.username==="Jatin") {
-      setError("blocked", {message:"sorry, user Jatin is blocked!!"})
-    }
-  }
-
-
-
-  const submitHandle = async (e) => {
-    e.preventDefault();
-    
-
+  const submitHandle = async (formData) => {
     try {
-      const response = await fetch('https://form-backend-bk3q.onrender.com/submit-form', { // or replace with the production URL
+      const response = await fetch('https://form-backend-bk3q.onrender.com/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const result = await response.json();
       if (response.ok) {
-        setResponseMessage(data.message);
+        setResponseMessage(result.message);
       } else {
-        setResponseMessage(data.error || 'Something went wrong!');
+        setResponseMessage(result.error || 'Something went wrong!');
       }
     } catch (error) {
       setResponseMessage('Failed to submit form. Please try again later.');
@@ -102,13 +62,13 @@ function Contact() {
 
         <div className="line2"></div>
         <div className="right">
-          <form onSubmit={submitHandle}>
+          <form onSubmit={handleSubmit(submitHandle)}>
             <label htmlFor="name">Name:</label>
             <br />
             <input
               placeholder="username"
               {...register("username", {
-                required: {value: true, message: "username is required"},
+                required: { value: true, message: "Username is required" },
                 minLength: { value: 3, message: "Minimum length should be 3" },
                 maxLength: { value: 16, message: "Maximum length should be 16" }
               })}
@@ -124,23 +84,31 @@ function Contact() {
 
             <label htmlFor="email">Email:</label>
             <br />
-            <input placeholder='email'
+            <input
+              placeholder='email'
               {...register("email", {
-                required: {value: true, message: "Email is required"}
+                required: { value: true, message: "Email is required" }
               })}
-              type="email" 
-              id="email" 
-              name="email" 
-              value={data.email} 
-              onChange={handleChange} />
-
+              type="email"
+              id="email"
+              name="email"
+              value={data.email}
+              onChange={handleChange}
+            />
+            <br />
             {errors.email && <span className="text-red-700">{errors.email.message}</span>}
             <br />
             <label htmlFor="message">Message:</label>
             <br />
-            <textarea placeholder='Enter Your Message' id="message" name="message" value={data.message} onChange={handleChange}></textarea>
+            <textarea
+              placeholder='Enter Your Message'
+              id="message"
+              name="message"
+              value={data.message}
+              onChange={handleChange}
+            ></textarea>
             <br />
-            {isSubmitting && <div>Loding...</div> }
+            {isSubmitting && <div>Loading...</div>}
             <input disabled={isSubmitting} type="submit" value="Send" />
             <br />
             {errors.blocked && <span className="text-red-700">{errors.blocked.message}</span>}
@@ -149,7 +117,7 @@ function Contact() {
         </div>
       </div>
 
-      <div className="fotter">
+      <div className="footer">
         <div className="Email">
           <Link to="#"><i className='bx bxl-gmail no-underline'></i> -/ Email - himanshu.mandowra1234@gmail.com /-</Link>
           <div className="copy">
