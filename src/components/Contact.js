@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import emailjs from 'emailjs-com';
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 function Contact() {
-
   const {
     register,
     handleSubmit,
     setError,
-
     formState: { errors, isSubmitting },
-  } = useForm()
-
-  const [data, setData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  } = useForm();
 
   const [responseMessage, setResponseMessage] = useState('');
+  const formRef = useRef(null); // Create a ref for the form element
 
   useEffect(() => {
     const currentYear = new Date().getFullYear();
@@ -30,71 +23,23 @@ function Contact() {
     }
   }, []); // Empty dependency array means this effect runs once after the initial render
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value
-    });
-  };
-
-  const delay = (d) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve()
-      }, d * 1000);
-    })
-  }
-  ////SUBMITTING PROCESS
   const submitTemp = async (data) => {
-    data.preventDefault();
-
-    emailjs.sendForm('service_2nib78g', 'template_bo3vf4i', data.target, 'LQvI0NJt-BCDntiHf')
-      .then((result) => {
-        console.log(result.text);
-        alert('Message sent successfully');
+    try {
+      if (formRef.current) {
+        // Pass the form element reference to emailjs
+        await emailjs.sendForm('service_2nib78g', 'template_bo3vf4i', formRef.current, 'LQvI0NJt-BCDntiHf');
         setResponseMessage('Message sent successfully.');
-      }, (error) => {
-        console.log(error.text);
-        alert('Failed to send message');
-        setResponseMessage('Failed to send message.');
-      });
-
-    setData({
-      username: '',
-      email: '',
-      message: '',
-    });
-    if (data.username === "Jatin") {
-      setError("blocked", { message: "sorry, user Jatin is blocked!!" })
+      }
+    } catch (error) {
+      console.error(error);
+      setResponseMessage('Failed to send message.');
     }
-  }
 
-
-
-  // const submitHandle = async (e) => {
-  //   e.preventDefault();
-
-
-  //   try {
-  //     const response = await fetch('https://backend-my-protfolio.vercel.app/submit-form', { // or replace with the production URL
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(formData),
-  //     });
-
-  //     const data = await response.json();
-  //     if (response.ok) {
-  //       setResponseMessage(data.message);
-  //     } else {
-  //       setResponseMessage(data.error || 'Something went wrong!');
-  //     }
-  //   } catch (error) {
-  //     setResponseMessage('Failed to submit form. Please try again later.');
-  //   }
-  // };
+    // Example condition for blocked user
+    if (data.username === 'Jatin') {
+      setError('blocked', { message: 'Sorry, user Jatin is blocked!' });
+    }
+  };
 
   return (
     <section className="contact" id="contact">
@@ -116,19 +61,18 @@ function Contact() {
 
         <div className="line2"></div>
         <div className="right">
-          <form onSubmit={submitTemp}>
+          <form ref={formRef} onSubmit={handleSubmit(submitTemp)}>
             <label htmlFor="name">Name:</label>
             <br />
             <input
               placeholder="username"
               {...register("username", {
-                required: { value: true, message: "username is required" },
+                required: { value: true, message: "Username is required" },
                 minLength: { value: 3, message: "Minimum length should be 3" },
                 maxLength: { value: 16, message: "Maximum length should be 16" }
               })}
               type="text"
               id="username"
-              value={data.username}
             />
             <br />
             {errors.username && <span className="text-red-700">{errors.username.message}</span>}
@@ -148,14 +92,19 @@ function Contact() {
               type="email"
               id="email"
             />
-
+            <br />
             {errors.email && <span className="text-red-700">{errors.email.message}</span>}
             <br />
+
             <label htmlFor="message">Message:</label>
             <br />
-            <textarea placeholder='Enter Your Message' id="message" name="message" value={data.message} onChange={handleChange}></textarea>
+            <textarea
+              placeholder="Enter Your Message"
+              id="message"
+              {...register("message", { required: { value: true, message: "Message is required" } })}
+            ></textarea>
             <br />
-            {isSubmitting && <div>Loding...</div>}
+            {isSubmitting && <div>Loading...</div>}
             <input disabled={isSubmitting} type="submit" value="Send" />
             <br />
             {errors.blocked && <span className="text-red-700">{errors.blocked.message}</span>}
@@ -164,7 +113,7 @@ function Contact() {
         </div>
       </div>
 
-      <div className="fotter">
+      <div className="footer">
         <div className="Email">
           <Link to="#"><i className='bx bxl-gmail no-underline'></i> -/ Email - himanshu.mandowra1234@gmail.com /-</Link>
           <div className="copy">
@@ -174,6 +123,6 @@ function Contact() {
       </div>
     </section>
   );
-};
+}
 
 export default Contact;
