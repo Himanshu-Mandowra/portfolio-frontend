@@ -102,7 +102,7 @@ function Contact() {
 
         <div className="line2"></div>
         <div className="right">
-          <form onSubmit={handleSubmit(submitHandle)}>
+          <form onSubmit={submitHandle}>
             <label htmlFor="name">Name:</label>
             <br />
             <input
