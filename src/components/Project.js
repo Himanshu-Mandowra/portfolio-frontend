@@ -22,7 +22,7 @@ function FuturisticPage() {
 
 
     return (
-        <div id='Project' className="w-full overflow-hidden Project h-[100vh] bg-gradient-to-b from-black via-gray-900 to-black flex items-center justify-center text-white">
+        <div id='Project' className="w-full overflow-hidden Project h-[100vh]  bg-[#222] flex items-center justify-center text-white">
             <div className='flex justify-center lg:w-[30%]  w-full ' >
                 <div className="w-[120%] flex text-center justify-center  items-center ">
 

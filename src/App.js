@@ -38,7 +38,7 @@ function App() {
             <Navbar />
             <HeroSection />
           </div>
-          <Divider id="about" />
+          <Divider />
           <About />
           <Divider />
           <Services />

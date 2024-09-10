@@ -497,7 +497,7 @@ nav a {
     font-size: 20px;
     margin: 0 7px;
     transition: all 0.2s ease-in-out;
-    z-index: 12;
+    /* z-index: 12; */
 
 }
 
@@ -1448,7 +1448,7 @@ nav a {
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     /* HOME PAGE RESPONSIVE */
 
@@ -1557,7 +1557,7 @@ nav a {
 
     .hero-image {
         width: 100%;
-        /* display: none; */
+        display: none;
         border: none;
         transition: 0.2s;
         padding: 4px 0;
@@ -1739,7 +1739,7 @@ nav a {
         font-size: 17px;
         height: 100%;
         color: darkgray;
-        text-align: center;
+        text-align: left;
         text-transform: uppercase;
 
     }
@@ -1799,7 +1799,7 @@ nav a {
 
 }
 
-@media (min-width: 601px) and (max-width: 800px) {
+@media (min-width: 701px) and (max-width: 800px) {
 
     html, body {
     margin: 0;

@@ -19,7 +19,7 @@ function About() {
     };
 
     return (
-        <section className="about"  data-aos="zoom-in">
+        <section className="about" id="about"  data-aos="zoom-in">
       <div className="top-bar">
         <div className="top-bar-one">About</div>
         <div className="underline"></div>
@@ -63,16 +63,17 @@ function About() {
           </div>
           <div className="para" data-aos="zoom-in">
             <div className="abc1">
-              Cell (Central Electronics Limited)
+              Cell (Central Electronics Limited) 
               <br />
-              Duration: One Month
+              <b> Duration: </b> One Month
+              <br />
+              <br />
+              <b> Discription: </b>
               <br />
               Designed a highly engaging and user-friendly website.
-              <br />
               Created an attractive UI and worked on both front-end and back-end development.
               <br />
               Managed the database to ensure seamless functionality.
-              <br />
               This experience honed my skills in full-stack development and allowed me to contribute effectively to a live project.
             </div>
             <div className="abc2">

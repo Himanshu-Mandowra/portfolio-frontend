@@ -52,9 +52,9 @@ function Contact() {
         <div className="left">
           <div className="social">
             <div className="i-one">
-              <Link to="/"><i className='bx bxl-twitter'></i> Twitter</Link>
-              <Link to="/"><i className='bx bxl-linkedin'></i> LinkedIn</Link>
-              <Link to="/"><i className='bx bxl-github'></i> GitHub</Link>
+              <Link to="/https://x.com/Himshu_Mandowra?t=v99mUW0-63kJSzYymIbSnA&s=09"><i className='bx bxl-twitter'></i> Twitter</Link>
+              <Link to="/http://www.linkedin.com/in/himanshu-mandowra"><i className='bx bxl-linkedin'></i> LinkedIn</Link>
+              <Link to="/https://github.com/Himanshu-Mandowra"><i className='bx bxl-github'></i> GitHub</Link>
             </div>
           </div>
         </div>

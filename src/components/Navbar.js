@@ -28,8 +28,6 @@ function Navbar() {
     }, [dropdownOpen]);
 
 
-
-
     // Function to scroll to the Section1 section
     const scrollToSec1 = () => {
         document.getElementById('section1').scrollIntoView({ behavior: 'smooth' });
@@ -64,8 +62,8 @@ function Navbar() {
         <nav id="navbar">
             <motion.div
                 className="logo"
-                // whileHover={{ scale: 0.5 }}
-                
+            // whileHover={{ scale: 0.5 }}
+
             >
                 <div className="title">
                     <h2 className="letter" style={{ color: 'yellow' }}>Port</h2>
@@ -110,13 +108,13 @@ function Navbar() {
                         <div>
                             {/* Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc. */}
                         </div>
-                        <div className="nav-mob" id="navbarSupportedContent" >
+                        <div className="nav-mob" id="navbarSupportedContent">
                             <Link onClick={scrollToSec1} data-bs-dismiss="offcanvas" to="#nav" className='HomeNav' id="section-link">Home</Link>
                             <Link onClick={scrollToAbout} data-bs-dismiss="offcanvas" to="#nav" className='AboutNav' id="about-link">About</Link>
-                        
+
                             <Link onClick={scrollToService} data-bs-dismiss="offcanvas" to="#nav" className='ServiceNav' >Service</Link>
 
-                        
+
                             <Link data-bs-dismiss="offcanvas" to="#nav" className='BlogNav' >Blog</Link>
                             <Link onClick={scrollToContact} data-bs-dismiss="offcanvas" to="#nav" className='ContactNav' >Contacts</Link>
                         </div>
