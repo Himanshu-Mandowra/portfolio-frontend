@@ -11,7 +11,7 @@ const socialLinks = [
   },
   {
     label: "Twitter",
-    href: "https://x.com/Gentle_Himanshu"
+    href: "https://x.com/Himshu_Mandowra"
   }
 ];
 

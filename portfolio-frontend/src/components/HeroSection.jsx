@@ -99,7 +99,7 @@ function HeroSection() {
             <i className="bx bxl-instagram"></i>
           </a>
           <a
-            href="https://x.com/Gentle_Himanshu"
+            href="https://x.com/Himshu_Mandowra"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-stone-700 bg-[#222222] text-xl text-white shadow-[0_20px_40px_rgba(0,0,0,0.44)] transition duration-200 hover:-translate-y-2"
